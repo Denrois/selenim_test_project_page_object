@@ -26,19 +26,21 @@ def driver(request):
     user_language = request.config.getoption('lang')
     if browser_name == 'chrome':
         chrome_options = ChromeOptions()
-        chrome_options.add_argument('headless')
+        chrome_options.add_argument('headless')  # browser in headless mode
+        chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])  # exclude DevTools messages
         chrome_options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),
                                    options=chrome_options)
     elif browser_name == 'firefox':
         firefox_options = FirefoxOptions()
-        firefox_options.add_argument('headless')
+        firefox_options.add_argument('--headless')  #
         firefox_options.set_preference('intl.accept_languages', user_language)
         browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()),
                                     options=firefox_options)
     elif browser_name == 'edge':
         edge_options = EdgeOptions()
         edge_options.add_argument('headless')
+        edge_options.add_experimental_option('excludeSwitches', ['enable-logging'])
         edge_options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
         browser = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()),
                                  options=edge_options)

@@ -16,3 +16,8 @@ class BasePage:
         except NoSuchElementException:
             return False
         return True
+
+    def text_in_element_match(self, first, second):
+        first_element = self.browser.find_element(*first).text
+        second_element = self.browser.find_element(*second).text
+        return first_element == second_element

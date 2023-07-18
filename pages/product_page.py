@@ -17,13 +17,13 @@ class ProductPage(BasePage):
             'There is no adding to basket message'
 
     def product_name_match(self):
-        assert self.text_in_element_match(ProductPageLocators.PRODUCT_NAME,
-                                          ProductPageLocators.NAME_ADDED_TO_BASKET), \
+        assert self.text_in_elements_match(ProductPageLocators.PRODUCT_NAME,
+                                           ProductPageLocators.NAME_ADDED_TO_BASKET), \
             'Product name and product added to basket name mismatch'
 
     def product_price_match(self):
-        assert self.text_in_element_match(ProductPageLocators.PRICE_BEFORE_ADDING,
-                                          ProductPageLocators.PRICE_AFTER_ADDING), \
+        assert self.text_in_elements_match(ProductPageLocators.PRICE_BEFORE_ADDING,
+                                           ProductPageLocators.PRICE_AFTER_ADDING), \
             'Product price and price in basket mismatch'
 
     def solve_the_quiz(self):

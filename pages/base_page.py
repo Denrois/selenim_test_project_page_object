@@ -17,7 +17,7 @@ class BasePage:
             return False
         return True
 
-    def text_in_element_match(self, first, second):
+    def text_in_elements_match(self, first, second):
         first_element = self.browser.find_element(*first).text
         second_element = self.browser.find_element(*second).text
         return first_element == second_element

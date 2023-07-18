@@ -1,4 +1,6 @@
-from selenium.common import NoSuchElementException
+from selenium.common import NoSuchElementException, TimeoutException
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -14,6 +16,22 @@ class BasePage:
         try:
             assert self.browser.find_element(*element)
         except NoSuchElementException:
+            return False
+        return True
+
+    def is_element_not_present(self, element, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until(
+                expected_conditions.presence_of_element_located(element))
+        except NoSuchElementException:
+            return True
+        return False
+
+    def is_element_disappear(self, element, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout).until_not(
+                expected_conditions.presence_of_element_located(element))
+        except TimeoutException:
             return False
         return True
 

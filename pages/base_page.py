@@ -23,11 +23,11 @@ class BasePage:
         try:
             WebDriverWait(self.browser, timeout).until(
                 expected_conditions.presence_of_element_located(element))
-        except NoSuchElementException:
+        except TimeoutException:
             return True
         return False
 
-    def is_element_disappear(self, element, timeout=4):
+    def is_element_disappear(self, element, timeout=4,):
         try:
             WebDriverWait(self.browser, timeout).until_not(
                 expected_conditions.presence_of_element_located(element))

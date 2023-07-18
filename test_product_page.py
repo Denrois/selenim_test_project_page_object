@@ -35,3 +35,29 @@ def test_guest_can_add_product_to_basket_with_0_to_9_promo(driver, promo):
     page.solve_the_quiz_simplified()
     page.product_name_match()
     page.product_price_match()
+
+
+@pytest.mark.skip
+@pytest.mark.negative
+def test_guest_cant_see_success_message_after_adding_product_to_basket(driver):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+    page = ProductPage(driver, link)
+    page.open()
+    page.add_to_basket()
+    page.success_msg_not_present()
+
+
+@pytest.mark.negative
+def test_guest_cant_see_success_message(driver):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+    page = ProductPage(driver, link)
+    page.success_msg_not_present()
+
+
+@pytest.mark.skip
+@pytest.mark.negative
+def test_message_disappeared_after_adding_product_to_basket(driver):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+    page = ProductPage(driver, link)
+    page.add_to_basket()
+    page.success_msg_is_disappear()

@@ -46,3 +46,11 @@ class ProductPage(BasePage):
         answer = str(math.log(abs((12 * math.sin(float(x))))))
         alert.send_keys(answer)
         alert.accept()
+
+    def success_msg_not_present(self):
+        assert self.is_element_not_present(ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is present, but should not'
+
+    def success_msg_is_disappear(self):
+        assert self.is_element_disappear(ProductPageLocators.SUCCESS_MESSAGE), \
+            'Success message is disappeared'

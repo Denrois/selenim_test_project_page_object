@@ -1,5 +1,6 @@
 import pytest
 from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
 
 
 def test_guest_can_add_product_to_basket(driver):
@@ -40,6 +41,9 @@ def test_guest_can_add_product_to_basket_with_0_to_9_promo(driver, promo):
 @pytest.mark.skip
 @pytest.mark.negative
 def test_guest_cant_see_success_message_after_adding_product_to_basket(driver):
+    """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
+        2. Click on add to basket button
+        Expected result: Test fail, due to the presence of successful message """
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
     page = ProductPage(driver, link)
     page.open()
@@ -49,6 +53,8 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(driver):
 
 @pytest.mark.negative
 def test_guest_cant_see_success_message(driver):
+    """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
+        Expected result: Test pass, due to the absence of successful message """
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
     page = ProductPage(driver, link)
     page.success_msg_not_present()
@@ -57,7 +63,32 @@ def test_guest_cant_see_success_message(driver):
 @pytest.mark.skip
 @pytest.mark.negative
 def test_message_disappeared_after_adding_product_to_basket(driver):
+    """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
+        2. Click on add to basket button
+        Expected result: Test fail, successful message is not disappearing """
     link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
     page = ProductPage(driver, link)
     page.add_to_basket()
     page.success_msg_is_disappear()
+
+
+def test_guest_should_see_login_link_on_product_page(driver):
+    """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/
+        Expected result: user can see 'login or register' link """
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/'
+    page = ProductPage(driver, link)
+    page.open()
+    page.should_be_login_link()
+
+
+def test_guest_can_go_to_login_page_from_product_page(driver):
+    """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/
+        2. Click on 'login or register' link
+        Expected result: user can see login page http://selenium1py.pythonanywhere.com/accounts/login/
+        with login and register forms """
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/'
+    page = ProductPage(driver, link)
+    page.open()
+    page.go_to_login_link()
+    login_page = LoginPage(driver, driver.current_url)
+    login_page.should_be_login_page()

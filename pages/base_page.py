@@ -36,6 +36,10 @@ class BasePage:
             return False
         return True
 
+    def is_user_authorized(self):
+        assert self.is_element_present(BasePageLocators.USER_ICON), \
+            'User icon not found, user may not be authorized'
+
     def text_in_elements_match(self, first, second):
         first_element = self.browser.find_element(*first).text
         second_element = self.browser.find_element(*second).text

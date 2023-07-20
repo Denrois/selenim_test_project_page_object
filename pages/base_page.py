@@ -13,6 +13,12 @@ class BasePage:
     def open(self):
         self.browser.get(self.url)
 
+    def go_to_login_link(self):
+        self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
+
+    def go_to_basket_link(self):
+        self.browser.find_element(*BasePageLocators.BASKET_LINK).click()
+
     def is_element_present(self, element):
         try:
             assert self.browser.find_element(*element)
@@ -28,7 +34,7 @@ class BasePage:
             return True
         return False
 
-    def is_element_disappear(self, element, timeout=4,):
+    def is_element_disappear(self, element, timeout=4, ):
         try:
             WebDriverWait(self.browser, timeout).until_not(
                 expected_conditions.presence_of_element_located(element))
@@ -40,16 +46,10 @@ class BasePage:
         assert self.is_element_present(BasePageLocators.USER_ICON), \
             'User icon not found, user may not be authorized'
 
+    def should_be_login_link(self):
+        assert self.is_element_present(BasePageLocators.LOGIN_LINK)
+
     def text_in_elements_match(self, first, second):
         first_element = self.browser.find_element(*first).text
         second_element = self.browser.find_element(*second).text
         return first_element == second_element
-
-    def should_be_login_link(self):
-        assert self.is_element_present(BasePageLocators.LOGIN_LINK)
-
-    def go_to_login_link(self):
-        self.browser.find_element(*BasePageLocators.LOGIN_LINK).click()
-
-    def go_to_basket_link(self):
-        self.browser.find_element(*BasePageLocators.BASKET_LINK).click()

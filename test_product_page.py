@@ -79,8 +79,7 @@ def test_guest_can_add_product_to_basket_with_0_to_9_promo(driver, promo):
     page.product_price_match()
 
 
-@pytest.mark.skip
-@pytest.mark.negative
+@pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(driver):
     """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
         2. Click on add to basket button
@@ -92,7 +91,6 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(driver):
     page.success_msg_not_present()
 
 
-@pytest.mark.negative
 def test_guest_cant_see_success_message(driver):
     """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
         Expected result: test pass, due to the absence of successful message """
@@ -101,8 +99,7 @@ def test_guest_cant_see_success_message(driver):
     page.success_msg_not_present()
 
 
-@pytest.mark.skip
-@pytest.mark.negative
+@pytest.mark.xfail
 def test_message_disappeared_after_adding_product_to_basket(driver):
     """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
         2. Click on add to basket button

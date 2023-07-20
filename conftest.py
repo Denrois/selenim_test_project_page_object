@@ -20,7 +20,7 @@ def pytest_addoption(parser):
                      help='en-gb(default), ')
 
 
-@pytest.fixture
+@pytest.fixture()
 def driver(request):
     browser_name = request.config.getoption('browser')
     user_language = request.config.getoption('lang')
@@ -33,7 +33,7 @@ def driver(request):
                                    options=chrome_options)
     elif browser_name == 'firefox':
         firefox_options = FirefoxOptions()
-        firefox_options.add_argument('--headless')  #
+        firefox_options.add_argument('--headless')
         firefox_options.set_preference('intl.accept_languages', user_language)
         browser = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()),
                                     options=firefox_options)

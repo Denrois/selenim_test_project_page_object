@@ -25,6 +25,7 @@ class TestUserAddToBasketFromProductPage:
         page.add_to_basket()
         page.success_msg_not_present()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, driver):
         """ 1. Open page http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear
             2. User can see 'add to basket' button
@@ -43,7 +44,7 @@ class TestUserAddToBasketFromProductPage:
         page.product_name_match()
         page.product_price_match()
 
-
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(driver):
     """ 1. Open page http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear
         2. Guest can see 'add to basket' button
@@ -119,6 +120,7 @@ def test_guest_should_see_login_link_on_product_page(driver):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(driver):
     """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/
         2. Click on 'login or register' link
@@ -132,6 +134,7 @@ def test_guest_can_go_to_login_page_from_product_page(driver):
     login_page.should_be_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(driver):
     """ 1. Open product page http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
         2. Click on 'View Basket' button

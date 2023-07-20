@@ -15,15 +15,15 @@ def pytest_addoption(parser):
     # add browser command(--browser), set chrome browser by default
     parser.addoption('--browser', action='store', default='chrome',
                      help='chrome(default), firefox, edge')
-    # add language command(--lang), set english by default
-    parser.addoption('--lang', action='store', default='en-gb',
+    # add language command(--language), set english by default
+    parser.addoption('--language', action='store', default='en-gb',
                      help='en-gb(default), ')
 
 
 @pytest.fixture()
 def driver(request):
     browser_name = request.config.getoption('browser')
-    user_language = request.config.getoption('lang')
+    user_language = request.config.getoption('language')
     if browser_name == 'chrome':
         chrome_options = ChromeOptions()
         chrome_options.add_argument('headless')  # browser in headless mode

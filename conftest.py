@@ -20,7 +20,7 @@ def pytest_addoption(parser):
                      help='en-gb(default), ')
 
 
-@pytest.fixture()
+@pytest.fixture
 def driver(request):
     browser_name = request.config.getoption('browser')
     user_language = request.config.getoption('language')

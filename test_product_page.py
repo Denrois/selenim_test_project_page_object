@@ -44,6 +44,7 @@ class TestUserAddToBasketFromProductPage:
         page.product_name_match()
         page.product_price_match()
 
+
 @pytest.mark.need_review
 def test_guest_can_add_product_to_basket(driver):
     """ 1. Open page http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear
